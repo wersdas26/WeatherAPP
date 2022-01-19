@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">WeatherAPP</string>
     <string name="title">Wetter App</string>
+    <string name="Button_Data">Daten abholen</string>
+
 </resources>
