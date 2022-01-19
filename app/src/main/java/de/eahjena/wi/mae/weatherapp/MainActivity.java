@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             try {
-                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=London&appid=be9602aaf7947a3d73acd26e36336e07");
+                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=London&appid=be9602aaf7947a3d73acd26e36336e07&lang=de");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
                 InputStream inputStream = httpURLConnection.getInputStream();
