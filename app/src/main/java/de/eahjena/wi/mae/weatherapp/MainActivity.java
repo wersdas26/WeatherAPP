@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             try {
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=5.5&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=3&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
@@ -108,9 +108,20 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0;i< weather.length();i++){
                         //we read the weather object by object and store each under the string descr
                         JSONObject descr = weather.getJSONObject(i);
+                        JSONObject preis = weather.getJSONObject(i);
+                        JSONObject open = weather.getJSONObject(i);
                         String description = descr.getString("name");
+                        String price = preis.getString("price");
+                        String opened = open.getString("isOpen");
+                        if (opened == "false")
+                        {
+                            opened = "nein";
+                        }
+                        else {
+                            opened = "ja";
+                        }
                         //now we store all the weather descriptions in an ArrayList
-                        descrList.add(description);
+                        descrList.add("Name: "+description +"\nPreis: "+ price +"\nZur Zeit geöffnet? "+ opened);
 
                     }
                 }
