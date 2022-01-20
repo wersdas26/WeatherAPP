@@ -1,12 +1,11 @@
-package de.eahjena.wi.mae.weatherapp;
-
-import androidx.appcompat.app.AppCompatActivity;
+/**package de.eahjena.wi.mae.weatherapp;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ArrayAdapter;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,16 +22,12 @@ import java.util.ArrayList;
 
 import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
+public class ApiConnect extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
-    ArrayList<String> descrList;
-    //to implement ListView
-    ArrayAdapter<String> listAdapter;
-    //to execute in MainThread:
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
+    ActivityMainBinding binding;
+    ArrayList<String> descrList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
-        initializeDescrList();
         binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,30 +46,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initializeDescrList() {
+    class getData extends Thread {
 
-        descrList = new ArrayList<>();
-        //now we pass the array list containing the descriptions as an argument to the layout
-        listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,descrList);
-        //testList is the id of our list defined in the .xml
-        binding.testList.setAdapter(listAdapter);
-
-    }
-
-    class getData extends Thread{
+        private JSONObject rawData;
 
         //contains all the JSON data
         String data = "";
 
         @Override
-        public void run(){
+        public void run() {
 
             //if user presses DataButton there should be shown a progress message
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
 
-                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog = new ProgressDialog(ApiConnect.this);
                     progressDialog.setMessage("Die Daten werden abgeholt");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
@@ -84,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
             });
 
             try {
+
                 URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=5.5&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
-                //"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
                 InputStream inputStream = httpURLConnection.getInputStream();
@@ -93,47 +79,35 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 //while line that comes from bufferedReader is not empty we will put this data into the data String line per line until it is empty
-                while ((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
 
                     data = data + line;
                 }
 
-                //if data is not empty we put it into JSON Object
-                if (!data.isEmpty()){
+                // if data is filled --> paste data into json object
+                if (!data.isEmpty()) {
 
                     JSONObject jsonObject = new JSONObject(data);
-                    JSONArray weather = jsonObject.getJSONArray("stations");
+                    JSONArray stations = jsonObject.getJSONArray("stations");
                     //if the user presses the DataButton again the old data needs to be erased first:
                     descrList.clear();
-                    for (int i = 0;i< weather.length();i++){
+                    for (int i = 0; i < stations.length(); i++) {
                         //we read the weather object by object and store each under the string descr
-                        JSONObject descr = weather.getJSONObject(i);
-                        String description = descr.getString("name");
+                        JSONObject name = stations.getJSONObject(i);
+                        String station_name = name.getString("name");
                         //now we store all the weather descriptions in an ArrayList
-                        descrList.add(description);
-
+                        descrList.add("Aktuell ist es: " + name);
                     }
                 }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            //when everything is done the ProgessDialog should dissappear
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-
-                    if (progressDialog.isShowing())
-                        progressDialog.dismiss();
-                    //the Adapter needs to be notified that the data changed after the button was pressed -> now data inside listView needs to be changed
-                    listAdapter.notifyDataSetChanged();
+            }catch(MalformedURLException e){
+                        e.printStackTrace();
+                    } catch(IOException e){
+                        e.printStackTrace();
+                    } catch(JSONException e){
+                        e.printStackTrace();
+                    }
                 }
-            });
+            }
         }
-    }
-}
+
+*/

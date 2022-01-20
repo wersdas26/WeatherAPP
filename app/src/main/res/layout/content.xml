@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_europe"
         android:layout_width="0dp"
         android:layout_height="548dp"
         app:layout_constraintBottom_toBottomOf="parent"
