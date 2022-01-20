@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=3&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
-                //"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
+                //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
+                // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
                 InputStream inputStream = httpURLConnection.getInputStream();
