@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">WeatherAPP</string>
     <string name="title">Wetter App</string>
-    <string name="Button_Data">Daten abholen</string>
+    <string name="Button_Data">Standort bestimmen</string>
     <string name="contentLayout">Hier die angeforderten Daten:</string>
-
+    <string name="city_name">Stadt</string>
+    <string name="Button_Europe">Europa Übersicht</string>
+    <string name="content_title">Das Wetter in Europas Hauptstädten</string>
 </resources>

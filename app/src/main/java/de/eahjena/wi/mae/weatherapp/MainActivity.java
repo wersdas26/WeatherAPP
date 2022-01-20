@@ -25,7 +25,7 @@ import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
     ArrayList<String> descrList;
     //to implement ListView
     ArrayAdapter<String> listAdapter;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
         initializeDescrList();
-        binding.DataButton.setOnClickListener(new View.OnClickListener() {
+        binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             try {
-                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Berlin&appid=be9602aaf7947a3d73acd26e36336e07&lang=de");
+                URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
                 InputStream inputStream = httpURLConnection.getInputStream();
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject descr = weather.getJSONObject(i);
                         String description = descr.getString("description");
                         //now we store all the weather descriptions in an ArrayList
-                        descrList.add(description);
+                        descrList.add("Aktuell ist es: " + description);
 
                     }
                 }
