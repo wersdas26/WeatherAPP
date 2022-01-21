@@ -3,6 +3,7 @@ package de.eahjena.wi.mae.weatherapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -40,20 +41,22 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
-        initializeDescrList();
+        //initializeDescrList();
         binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //setContentView(R.layout.content);
-                new getData().start();
+                //new getData().start();
+                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
+                startActivity(intent);
 
             }
         });
 
-    }
+    }}
 
-    private void initializeDescrList() {
+   /** private void initializeDescrList() {
 
         descrList = new ArrayList<>();
         //now we pass the array list containing the descriptions as an argument to the layout
@@ -149,4 +152,4 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-}
+}*/

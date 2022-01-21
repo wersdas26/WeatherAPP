@@ -54,7 +54,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             String data = "";
 
             try {
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=3&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=20&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
                 // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -93,11 +93,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 JSONArray stations = jsonObject.getJSONArray("stations");
                 for (int i = 0; i< stations.length(); i++){
 
-                    JSONObject station_one = stations.getJSONObject(i);
+                    JSONObject stationsJSONObject = stations.getJSONObject(i);
 
                     ContentModelClass modelClass = new ContentModelClass();
-                    modelClass.setS_name(station_one.getString("name"));
-                    modelClass.setS_open(station_one.getString("price"));
+                    modelClass.setS_name(stationsJSONObject.getString("brand"));
+                    modelClass.setS_open(stationsJSONObject.getString("isOpen"));
 
                     stationList.add(modelClass);
                 }
