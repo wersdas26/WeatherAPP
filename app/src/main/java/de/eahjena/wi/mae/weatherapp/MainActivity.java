@@ -40,20 +40,22 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
-        initializeDescrList();
+        //initializeDescrList();
         binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                setContentView(R.layout.content);
-                new getData().start();
+                
+                //setContentView(R.layout.content);
+                //new getData().start();
+
 
             }
         });
 
-    }
+    }}
 
-    private void initializeDescrList() {
+   /** private void initializeDescrList() {
 
         descrList = new ArrayList<>();
         //now we pass the array list containing the descriptions as an argument to the layout
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            //when everything is done the ProgessDialog should dissappear
+            //when everything is done the ProgressDialog should disappear
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -149,4 +151,4 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-}
+}*/

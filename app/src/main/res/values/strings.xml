@@ -7,4 +7,6 @@
     <string name="Button_Europe">Europa Übersicht</string>
     <string name="content_title">Tankstellen in ihrer Nähe</string>
     <string name="details_placeholder">bla \nbla \nbla</string>
+    <string name="station_name">placeholder</string>
+    <string name="station_open">placeholder</string>
 </resources>
