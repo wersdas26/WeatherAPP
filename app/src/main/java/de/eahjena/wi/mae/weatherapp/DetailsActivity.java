@@ -15,18 +15,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //binding = DetailViewBinding.inflate(getLayoutInflater());
         setContentView(R.layout.detail_view);
-        //setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
-        /**initializeDescrList();
-        binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new MainActivity.getData().start();
-
-            }
-        });*/
 
     }
 }
