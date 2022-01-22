@@ -15,6 +15,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     Context mContext;
     List<ContentModelClass> mData;
+    OnItemClickListener mListener;  //mListener will be the activity
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    //link the activity to the Listener
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
 
     public RecyclerAdapter(Context mContext, List<ContentModelClass> mData) {
         this.mContext = mContext;
@@ -32,6 +43,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     }
 
+    //we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
@@ -54,6 +66,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
         }
     }

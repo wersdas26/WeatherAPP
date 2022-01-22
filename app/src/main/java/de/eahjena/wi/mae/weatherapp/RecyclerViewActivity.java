@@ -1,6 +1,7 @@
 package de.eahjena.wi.mae.weatherapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,7 +30,7 @@ import java.util.List;
 import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 import de.eahjena.wi.mae.weatherapp.databinding.ContentBinding;
 
-public class RecyclerViewActivity extends AppCompatActivity {
+public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener{
 
     List<ContentModelClass> stationList;
     RecyclerView recyclerView;
@@ -44,6 +45,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         GetData getData = new GetData();
         getData.execute();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent detailIntent = new Intent(this, DetailsActivity.class);
+        // clickedItem = stationList.get(position); -> Youtube Video 5:00
     }
 
     public class GetData extends AsyncTask<String, String, String>{
@@ -117,6 +124,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, stationList);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
         recyclerView.setAdapter(recyclerAdapter);
+        recyclerAdapter.setOnItemClickListener(RecyclerViewActivity.this);
     }
 }
 
