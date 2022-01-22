@@ -28,6 +28,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.RECYCLERVIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

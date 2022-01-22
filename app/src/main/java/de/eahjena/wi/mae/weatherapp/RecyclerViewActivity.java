@@ -32,6 +32,9 @@ import de.eahjena.wi.mae.weatherapp.databinding.ContentBinding;
 
 public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener{
 
+    public static final String EXTRA_NAME = "StationName";
+    public static final String EXTRA_OPEN = "StationOpen";
+
     List<ContentModelClass> stationList;
     RecyclerView recyclerView;
 
@@ -49,8 +52,14 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
     @Override
     public void onItemClick(int position) {
-        Intent detailIntent = new Intent(this, DetailsActivity.class);
-        // clickedItem = stationList.get(position); -> Youtube Video 5:00
+        Intent detailIntent = new Intent(RecyclerViewActivity.this, DetailsActivity.class);
+        ContentModelClass clickedItem = stationList.get(position);
+        System.out.println("Haaaalloooo");
+
+        detailIntent.putExtra(EXTRA_NAME, clickedItem.getS_name());
+        detailIntent.putExtra(EXTRA_OPEN,clickedItem.getS_open());
+
+        startActivity(detailIntent);
     }
 
     public class GetData extends AsyncTask<String, String, String>{
