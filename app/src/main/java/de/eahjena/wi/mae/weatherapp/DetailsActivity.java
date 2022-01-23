@@ -50,7 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         textViewName.setText(StationName);
         textViewOpen.setText(StationOpen);
-        textViewStreet.setText(StationStreet+" "+StationHouseNumber+"\n"+StationZip+" "+StationCity);
+        textViewStreet.setText("Adresse: "+StationStreet+" "+StationHouseNumber+"\n\t\t\t\t\t\t\t\t"+StationZip+" "+StationCity);
         textViewPriceE5.setText("E5: "+StationPriceE5+" €");
         textViewPriceE10.setText("E10: "+StationPriceE10+" €");
         textViewPriceDiesel.setText("Diesel: "+StationPriceDiesel+" €");
