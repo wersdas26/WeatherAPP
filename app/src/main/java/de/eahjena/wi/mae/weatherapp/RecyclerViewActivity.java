@@ -34,6 +34,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
     public static final String EXTRA_NAME = "StationName";
     public static final String EXTRA_OPEN = "StationOpen";
+    public static final String EXTRA_STREET = "StationStreet";
+    public static final String EXTRA_HOUSE_NUMBER = "StationHouseNumber";
+    public static final String EXTRA_ZIP = "StationZip";
+    public static final String EXTRA_CITY = "StationCity";
+    public static final String EXTRA_E5 = "StationE5";
+    public static final String EXTRA_E10 = "StationE10";
+    public static final String EXTRA_DIESEL = "StationDiesel";
 
     List<ContentModelClass> stationList;
     RecyclerView recyclerView;
@@ -58,6 +65,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
         detailIntent.putExtra(EXTRA_NAME, clickedItem.getS_name());
         detailIntent.putExtra(EXTRA_OPEN,clickedItem.getS_open());
+        detailIntent.putExtra(EXTRA_STREET, clickedItem.getS_street());
+        detailIntent.putExtra(EXTRA_HOUSE_NUMBER, clickedItem.getS_house_number());
+        detailIntent.putExtra(EXTRA_ZIP, clickedItem.getS_zip());
+        detailIntent.putExtra(EXTRA_CITY, clickedItem.getS_city());
+        detailIntent.putExtra(EXTRA_E5, clickedItem.getS_price_e5());
+        detailIntent.putExtra(EXTRA_E10, clickedItem.getS_price_e10());
+        detailIntent.putExtra(EXTRA_DIESEL, clickedItem.getS_price_diesel());
 
         startActivity(detailIntent);
     }
@@ -70,7 +84,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             String data = "";
 
             try {
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=54.092&lng=12.099&rad=20&sort=dist&type=e5&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=20&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
                 // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -114,6 +128,14 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     ContentModelClass modelClass = new ContentModelClass();
                     modelClass.setS_name(stationsJSONObject.getString("name"));
                     modelClass.setS_open(stationsJSONObject.getString("isOpen"));
+                    modelClass.setS_street(stationsJSONObject.getString("street"));
+                    modelClass.setS_house_number(stationsJSONObject.getString("houseNumber"));
+                    modelClass.setS_zip(stationsJSONObject.getString("postCode"));
+                    modelClass.setS_city(stationsJSONObject.getString("place"));
+                    modelClass.setS_price_e5(stationsJSONObject.getString("e5"));
+                    modelClass.setS_price_e10(stationsJSONObject.getString("e10"));
+                    modelClass.setS_price_diesel(stationsJSONObject.getString("diesel"));
+
 
                     stationList.add(modelClass);
                 }
