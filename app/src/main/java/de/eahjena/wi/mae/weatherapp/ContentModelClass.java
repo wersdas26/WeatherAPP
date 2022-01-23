@@ -29,10 +29,10 @@ public class ContentModelClass {
     public void setS_open(String s_open) {
         if (s_open == "false")
         {
-            s_open = "geschlossen";
+            s_open = "Zur Zeit geöffnet? Nein";
         }
         else {
-            s_open = "geöffnet";
+            s_open = "Zur Zeit geöffnet? Ja";
         }
         this.s_open = s_open;
     }
