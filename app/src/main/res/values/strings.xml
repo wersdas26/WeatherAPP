@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeatherAPP</string>
+    <string name="app_name">Tank-App</string>
     <string name="main_title">Ihr Standort:</string>
     <string name="Button_Data">Tankstellen abrufen</string>
     <string name="contentLayout">Hier die angeforderten Daten:</string>
