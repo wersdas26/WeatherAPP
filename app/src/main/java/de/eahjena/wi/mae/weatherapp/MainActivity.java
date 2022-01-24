@@ -1,13 +1,25 @@
 package de.eahjena.wi.mae.weatherapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +39,10 @@ import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button locationButton;
+    TextView locationTextView;
+
+
     ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
     ArrayList<String> descrList;
     //to implement ListView
@@ -38,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initViews();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
@@ -54,9 +71,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }}
 
-   /** private void initializeDescrList() {
+    }
+
+    private void initViews() {
+        locationButton = findViewById(R.id.location_button);
+        locationButton.setOnClickListener(view -> onLocationButtonClick());
+        locationTextView = findViewById(R.id.location_text);
+    }
+
+
+    private void onLocationButtonClick() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            updateLocation();
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+            }
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            updateLocation();
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void updateLocation() {
+        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
+    }
+
+    private void onLocationReceived(Location location) {
+        String locationText = location.getLatitude() + " | " + location.getLongitude();
+        locationTextView.setText(locationText);
+    }
+}
+
+/** private void initializeDescrList() {
 
         descrList = new ArrayList<>();
         //now we pass the array list containing the descriptions as an argument to the layout
