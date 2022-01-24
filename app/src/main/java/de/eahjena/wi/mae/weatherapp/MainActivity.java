@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Button locationButton;
     TextView locationTextView;
+    Button dataButton;
 
 
     @Override
@@ -61,7 +62,18 @@ public class MainActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_main);
                 onLocationButtonClick();
             }
+
         });
+        dataButton = findViewById(R.id.btn_DataButton);
+        dataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.content);
+                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
        /* binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
