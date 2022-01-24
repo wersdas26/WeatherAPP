@@ -9,44 +9,31 @@
     android:padding="50dp"
     tools:context=".MainActivity">
 
+
     <Button
+        android:id="@+id/location_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/location_button"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="336dp"
         android:text="Wo bin ich?"
-        android:layout_marginBottom="20dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/btn_DataButton"
+        tools:layout_editor_absoluteX="50dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/location_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/location_text"
-        android:text="..."
-        android:textSize="20sp"
-        android:textColor="#000000"
         android:layout_gravity="center_horizontal"
-        />
-
-
-    <ListView
-        android:id="@+id/testList"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="2dp"
+        android:text="..."
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" >
+        app:layout_constraintTop_toBottomOf="@+id/location_button" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/main_title"
-            android:textSize="21sp"
-            android:textStyle="bold" />
-    </ListView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_DataButton"

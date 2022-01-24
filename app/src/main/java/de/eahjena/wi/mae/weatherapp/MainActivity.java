@@ -49,12 +49,22 @@ public class MainActivity extends AppCompatActivity {
     Button locationButton;
     TextView locationTextView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initViews();
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+        locationButton = findViewById(R.id.location_button);
+        locationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_main);
+                onLocationButtonClick();
+            }
+        });
+
+       /* binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_main);
         setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
         //initializeDescrList();
         binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +76,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 startActivity(intent);
 
-            }
+            }*/
 
 
-        });
-    }
-        private void initViews() {
-            locationButton = findViewById(R.id.location_button);
-            locationButton.setOnClickListener(view -> onLocationButtonClick());
-            locationTextView = findViewById(R.id.location_text);
         }
 
 
@@ -105,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         private void onLocationReceived(Location location) {
             String locationText = location.getLatitude() + " | " + location.getLongitude();
+            locationTextView = findViewById(R.id.location_text);
             locationTextView.setText(locationText);
         }
     }
