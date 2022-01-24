@@ -39,10 +39,6 @@ import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button locationButton;
-    TextView locationTextView;
-
-
     ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
     ArrayList<String> descrList;
     //to implement ListView
@@ -50,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     //to execute in MainThread:
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
+    Button locationButton;
+    TextView locationTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,48 +67,53 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
+
+
         });
-
-
     }
+        private void initViews() {
+            locationButton = findViewById(R.id.location_button);
+            locationButton.setOnClickListener(view -> onLocationButtonClick());
+            locationTextView = findViewById(R.id.location_text);
+        }
 
-    private void initViews() {
-        locationButton = findViewById(R.id.location_button);
-        locationButton.setOnClickListener(view -> onLocationButtonClick());
-        locationTextView = findViewById(R.id.location_text);
-    }
 
+        private void onLocationButtonClick() {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                updateLocation();
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+                }
+            }
 
-    private void onLocationButtonClick() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            updateLocation();
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                updateLocation();
             }
         }
 
-    }
+        @SuppressLint("MissingPermission")
+        private void updateLocation() {
+            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
+        }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            updateLocation();
+        private void onLocationReceived(Location location) {
+            String locationText = location.getLatitude() + " | " + location.getLongitude();
+            locationTextView.setText(locationText);
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private void updateLocation() {
-        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
-    }
 
-    private void onLocationReceived(Location location) {
-        String locationText = location.getLatitude() + " | " + location.getLongitude();
-        locationTextView.setText(locationText);
-    }
-}
+
+
+
+
 
 /** private void initializeDescrList() {
 
