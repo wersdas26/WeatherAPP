@@ -4,14 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/chris/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/content.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/content_element.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/chris/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/detail_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/drawable/button_background.xml" value="0.30104166666666665" />
         <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/drawable/main_background.xml" value="0.30104166666666665" />
         <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/drawable/weather_app_background.xml" value="0.30104166666666665" />
-        <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/RecyclerView.xml" value="0.28489583333333335" />
         <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/content.xml" value="0.25" />
-        <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/content_element.xml" value="0.375" />
-        <entry key="..\:/Users/kiwi/AndroidStudioProjects/WeatherAPP/app/src/main/res/layout/detail_view.xml" value="0.28489583333333335" />
       </map>
     </option>
   </component>
