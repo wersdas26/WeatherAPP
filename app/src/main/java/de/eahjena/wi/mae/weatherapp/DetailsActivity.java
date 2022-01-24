@@ -22,8 +22,6 @@ import de.eahjena.wi.mae.weatherapp.databinding.DetailViewBinding;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    //DetailViewBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

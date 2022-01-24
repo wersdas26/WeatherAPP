@@ -61,7 +61,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(RecyclerViewActivity.this, DetailsActivity.class);
         ContentModelClass clickedItem = stationList.get(position);
-        System.out.println("Haaaalloooo");
 
         detailIntent.putExtra(EXTRA_NAME, clickedItem.getS_name());
         detailIntent.putExtra(EXTRA_OPEN,clickedItem.getS_open());
@@ -84,7 +83,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             String data = "";
 
             try {
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=20&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                //Berlin: lat=52.517&lng=13.388
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
                 // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -118,7 +118,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         protected void onPostExecute(String s){
             //super.onPostExecute(s);
 
-            try{
+            try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray stations = jsonObject.getJSONArray("stations");
                 for (int i = 0; i< stations.length(); i++){
