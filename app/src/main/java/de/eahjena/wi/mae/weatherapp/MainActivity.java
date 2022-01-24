@@ -39,7 +39,7 @@ import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
+    //ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
     ArrayList<String> descrList;
     //to implement ListView
     ArrayAdapter<String> listAdapter;
@@ -68,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
         dataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.content);
+                //setContentView(R.layout.content);
                 Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 startActivity(intent);
             }
         });
+    }
 
 
        /* binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -89,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }*/
-
-
-        }
 
 
         private void onLocationButtonClick() {
