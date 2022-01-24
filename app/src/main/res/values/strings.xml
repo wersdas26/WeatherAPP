@@ -9,4 +9,5 @@
     <string name="details_placeholder">bla \nbla \nbla</string>
     <string name="station_name">placeholder</string>
     <string name="station_open">placeholder</string>
+    <string name="location_btn">Wo bin ich?</string>
 </resources>
