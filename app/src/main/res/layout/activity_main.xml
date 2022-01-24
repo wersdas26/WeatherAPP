@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6C6C6C"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/main_title"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="normal"
         app:layout_constraintHorizontal_bias="0.498"
@@ -28,33 +28,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" >
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
     </ListView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <Spinner
+        android:id="@+id/spinnerUmkreis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/button_background"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:text="Wähle eine Umkreis aus"
         app:layout_constraintBottom_toTopOf="@+id/btn_DataButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testList">
+        app:layout_constraintTop_toBottomOf="@+id/testList" />
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_weight="1"
-            android:inputType="none"
-            android:text="Umkreis auswählen" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/title_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/spinner_title"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerUmkreis"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_DataButton"
@@ -65,7 +64,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/Button_Data"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"

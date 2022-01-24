@@ -1,13 +1,19 @@
 package de.eahjena.wi.mae.weatherapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +31,9 @@ import java.util.ArrayList;
 import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Spinner spinnerUmkreis;
 
     ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
     ArrayList<String> descrList;
@@ -54,7 +62,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }}
+        spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
+
+        String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Umkreis);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUmkreis.setAdapter(adapter);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.spinnerUmkreis) {
+            String valuefromSpinner = parent.getItemAtPosition(position).toString();
+
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}
+
+
 
    /** private void initializeDescrList() {
 
