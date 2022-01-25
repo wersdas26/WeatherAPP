@@ -84,6 +84,23 @@ public class MainActivity extends AppCompatActivity {
         spinnerUmkreis.setAdapter(adapter);
 
     }
+        @Override
+        protected void onResume() {
+            super.onResume();
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        onLocationButtonClick();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+
+    }
+
 
         private void onLocationButtonClick() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
