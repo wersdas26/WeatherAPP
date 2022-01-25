@@ -85,6 +85,23 @@ public class MainActivity extends AppCompatActivity {
         spinnerUmkreis.setAdapter(adapter);
 
     }
+        @Override
+        protected void onResume() {
+            super.onResume();
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        onLocationButtonClick();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+
+    }
+
 
     @Override
     protected void onResume() {
