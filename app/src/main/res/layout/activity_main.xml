@@ -16,7 +16,7 @@
         android:background="@drawable/button_background"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Wo bin ich?"
+        android:text="@string/wo_bin_ich"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

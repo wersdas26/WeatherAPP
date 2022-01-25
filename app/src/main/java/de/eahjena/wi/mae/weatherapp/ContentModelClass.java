@@ -41,8 +41,14 @@ public class ContentModelClass {
     public String getS_open() {
         return s_open;
     }
-    public void setS_open(String s_open) {
-        if (s_open == "false")
+
+    /**
+     *
+     * @param s_open
+     */
+    public void setShopOpen(String s_open) {
+
+        if ("false".equals(s_open))
         {
             s_open = "Nein";
         }

@@ -12,14 +12,13 @@ import static de.eahjena.wi.mae.weatherapp.RecyclerViewActivity.EXTRA_ZIP;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
-import de.eahjena.wi.mae.weatherapp.databinding.DetailViewBinding;
-
+/**
+ *
+ */
 public class DetailsActivity extends AppCompatActivity {
 
     @Override
