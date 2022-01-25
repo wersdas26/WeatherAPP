@@ -14,8 +14,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     Button locationButton;
     TextView locationTextView;
     Button dataButton;
+    private Spinner spinnerUmkreis;
 
 
     @Override
@@ -73,24 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
+
+        String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Umkreis);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUmkreis.setAdapter(adapter);
+
     }
-
-
-       /* binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
-        setContentView(binding.getRoot()); //wenn man dies auskommentiert und stattdessen über layout auf activity_main zugreift funktioniert der button nicht mehr
-        //initializeDescrList();
-        binding.btnDataButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //setContentView(R.layout.content);
-                //new getData().start();
-                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
-                startActivity(intent);
-
-            }*/
-
 
         private void onLocationButtonClick() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -122,6 +115,22 @@ public class MainActivity extends AppCompatActivity {
             locationTextView = findViewById(R.id.location_text);
             locationTextView.setText(locationText);
         }
+
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.spinnerUmkreis) {
+            String valuefromSpinner = parent.getItemAtPosition(position).toString();
+
+        }
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
+
     }
 
 
