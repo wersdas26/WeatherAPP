@@ -44,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
     //to implement ListView
     ArrayAdapter<String> listAdapter;
     //to execute in MainThread:
-    Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
     Button locationButton;
     TextView locationTextView;
     Button dataButton;
+    //double lat;
+    //double lon;
 
 
     @Override
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setContentView(R.layout.activity_main);
                 onLocationButtonClick();
+
             }
 
         });
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         dataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //setContentView(R.layout.content);
+                setContentView(R.layout.content);
                 Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 startActivity(intent);
             }
@@ -100,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                     requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
             }
-
         }
 
         @Override
@@ -118,9 +119,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void onLocationReceived(Location location) {
-            String locationText = location.getLatitude() + " | " + location.getLongitude();
+
+            //this.lat = location.getLatitude();
+            //this.lon = location.getLongitude();
+
             locationTextView = findViewById(R.id.location_text);
+            String locationText = location.getLatitude() + " | " + location.getLongitude();
             locationTextView.setText(locationText);
+
         }
     }
 
