@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">Tank-App</string>
-    <string name="main_title">Ihr Standort:</string>
+    <string name="main_title">Dein Standort:</string>
     <string name="Button_Data">Tankstellen abrufen</string>
     <string name="contentLayout">Hier die angeforderten Daten:</string>
     <string name="city_name">Stadt</string>
     <string name="Button_Europe">Europa Übersicht</string>
-    <string name="content_title">Tankstellen in ihrer Nähe</string>
+    <string name="content_title">Tankstellen in deiner Nähe</string>
     <string name="details_placeholder">bla \nbla \nbla</string>
     <string name="station_name">placeholder</string>
     <string name="station_open">placeholder</string>
+    <string name="spinner_title">Wähle den gewünschten Umkreis aus:</string>
+
+    <string-array name="Umkreis">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>15 km</item>
+        <item>20 km</item>
+        <item>25 km</item>
+    </string-array>
 </resources>
