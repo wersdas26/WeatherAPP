@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Button locationButton;
     TextView locationTextView;
     Button dataButton;
+    TextView addressTextView;
 
 
     @Override
@@ -127,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
             String locationText = location.getLatitude() + " | " + location.getLongitude();
             locationTextView = findViewById(R.id.location_text);
             locationTextView.setText(locationText);
+            try {
+                Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                String address = addresses.get(0).getAddressLine(0);
+                addressTextView = findViewById(R.id.address_text);
+                addressTextView.setText(address);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
     /**
@@ -151,29 +161,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO
 
     }
-
-    /*LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-    String provider = locationManager.getBestProvider(new Criteria(), true);
-    Location locations = locationManager.getLastKnownLocation(provider);
-    List<String> providerList = locationManager.getAllProviders();
-    if(null!=locations && null!=providerList && providerList.size()>0){
-        double longitude = locations.getLongitude();
-        double latitude = locations.getLatitude();
-        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-        try {
-            List<Address> listAddresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if(null!=listAddresses&&listAddresses.size()>0){
-                String _Location = listAddresses.get(0).getAddressLine(0);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-
-
-    }
+}
 
 
 
