@@ -7,9 +7,14 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +28,10 @@ import android.widget.TextView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -110,12 +118,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @SuppressLint("MissingPermission")
-        private void updateLocation() {
+        public void updateLocation() {
             FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
         }
 
-        private void onLocationReceived(Location location) {
+        public void onLocationReceived(Location location) {
             String locationText = location.getLatitude() + " | " + location.getLongitude();
             locationTextView = findViewById(R.id.location_text);
             locationTextView.setText(locationText);
@@ -144,6 +152,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+    String provider = locationManager.getBestProvider(new Criteria(), true);
+    Location locations = locationManager.getLastKnownLocation(provider);
+    List<String> providerList = locationManager.getAllProviders();
+    if(null!=locations && null!=providerList && providerList.size()>0){
+        double longitude = locations.getLongitude();
+        double latitude = locations.getLatitude();
+        Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+        try {
+            List<Address> listAddresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if(null!=listAddresses&&listAddresses.size()>0){
+                String _Location = listAddresses.get(0).getAddressLine(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }*/
 
 
 
