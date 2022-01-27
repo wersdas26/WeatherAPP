@@ -120,7 +120,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     //e.printStackTrace();
                     Log.e(TAG, "getData() malformed URL", e);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    Log.e(TAG, "getData() IOException", e);
                 }
 
 
@@ -156,7 +157,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                Log.e(TAG,"JSON Exception", e);
             }
 
             PutDataIntoRecyclerView(stationList);

@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     TextView locationTextView;
     Button dataButton;
     TextView addressTextView;
+    final static String TAG = "onLocationReceived";
 
 
     @Override
@@ -136,7 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 addressTextView = findViewById(R.id.address_text);
                 addressTextView.setText(address);
             } catch (Exception e){
-                e.printStackTrace();
+                //e.printStackTrace();
+                Log.e(TAG, "Geocoder Exception", e);
             }
         }
 
