@@ -125,9 +125,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onLocationReceived(Location location) {
-            String locationText = location.getLatitude() + " | " + location.getLongitude();
+            String locationLat = String.valueOf(location.getLatitude());
+            String locationLong = String.valueOf(location.getLongitude());
             locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText(locationText);
+            locationTextView.setText(locationLat+" | "+locationLong);
             try {
                 Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);

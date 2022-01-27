@@ -85,16 +85,19 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         protected String doInBackground(String... strings) {
 
             String data = "";
-            String latitude;
+            String latidude;
             String longitude;
             String radius;
 
             try {
 
+
                 URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //Berlin: lat=52.517&lng=13.388
                 //EAH Jena lat=50.918&lng11.568
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
+                //Bsp.: https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
+                //https://creativecommons.tankerkoenig.de/json/list.php?"+latitude+"&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
                 // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
