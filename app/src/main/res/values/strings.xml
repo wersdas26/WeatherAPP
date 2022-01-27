@@ -10,7 +10,7 @@
     <string name="station_name">placeholder</string>
     <string name="station_open">placeholder</string>
     <string name="location_btn">Wo bin ich?</string>
-    <string name="spinner_title">Wähle den gewünschten Umkreis aus:</string>
+    <string name="spinner_title">Wähle den gewünschten Radius in Kilometern aus:</string>
     <string name="detail_name">Name</string>
     <string name="detail_address">Adresse</string>
     <string name="detail_e5">E5</string>
