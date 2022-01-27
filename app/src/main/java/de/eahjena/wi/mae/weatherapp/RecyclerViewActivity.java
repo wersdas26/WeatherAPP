@@ -60,7 +60,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     /**
      *
      * @param position -> the position from the item in the RecyclerViewList that was clicked
-     *                 when an item is clicked the DetailsActivity is called with all the details belonging to the selected petrol station
+     *                 when an item is clicked the DetailsActivity is called with all the details
+     *                 belonging to the selected petrol station
      */
     @Override
     public void onItemClick(int position) {
@@ -96,14 +97,16 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         protected String doInBackground(String... strings) {
 
             String data = "";
-            String latidude;
-            String longitude;
+            //String latidude = (String) MainActivity.locationTextView.getText();
+            //String longitude;
             String radius;
 
             try {
 
-
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                //String latitude = (String) MainActivity.locationTextView.getText();
+                String latitude = MainActivity.locationLat;
+                String longitude = MainActivity.locationLong;
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat="+latitude+"&lng="+longitude+"&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //Berlin: lat=52.517&lng=13.388
                 //EAH Jena lat=50.918&lng11.568
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719

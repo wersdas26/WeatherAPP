@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     Button dataButton;
     TextView addressTextView;
     final static String TAG = "onLocationReceived";
+    static String locationLat;
+    static String locationLong;
 
 
     @Override
@@ -131,10 +133,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onLocationReceived(Location location) {
-            String locationLat = String.valueOf(location.getLatitude());
-            String locationLong = String.valueOf(location.getLongitude());
+            locationLat = String.valueOf(location.getLatitude());
+            locationLong = String.valueOf(location.getLongitude());
             locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText(locationLat+" | "+locationLong);
+            locationTextView.setText("lat="+locationLat+"&lng="+locationLong);
+            //locationTextView.setText(locationLat+" | "+locationLong);
             try {
                 Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
