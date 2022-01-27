@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * we use the getter methods from ContenModelClass to display the Text for each petrol station in the recyclerView in the content.xml
+ */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
     Context mContext;

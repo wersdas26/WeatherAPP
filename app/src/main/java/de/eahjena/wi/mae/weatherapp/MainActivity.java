@@ -35,7 +35,11 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *
+ * shows activity_main.xml
+ * when App is started the GPS coordinates are shown + converted into address
+ * there is a dropdown menu available where you can select the radius in which youd like to search for petrol stations
+ * when nothing is selected from the dropdown menu the default is ????
+ * in this class we set the onClickListener for the "Tankstellen abrufen" button on the bottom of the screen -> when it is clicked the RecyclerViewActivity class is called
  */
 public class MainActivity extends AppCompatActivity {
 

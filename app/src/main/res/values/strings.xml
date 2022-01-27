@@ -19,6 +19,7 @@
     <string name="detail_open">Geöffnet?</string>
     <string name="wo_bin_ich">Wo bin ich?</string>
     <string name="location_text">...</string>
+    <string name="addresText">TextView</string>
 
     <string-array name="Umkreis">
         <item>5 km</item>

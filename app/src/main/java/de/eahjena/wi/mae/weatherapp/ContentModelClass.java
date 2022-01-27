@@ -1,5 +1,9 @@
 package de.eahjena.wi.mae.weatherapp;
 
+/**
+ * in this class we declare all strings/attributes of the petrol stations that we want to display in the app
+ * every attribute gets a getter+setter method
+ */
 public class ContentModelClass {
 
     String s_name;
@@ -41,11 +45,6 @@ public class ContentModelClass {
     public String getS_open() {
         return s_open;
     }
-
-    /**
-     *
-     * @param s_open
-     */
     public void setShopOpen(String s_open) {
 
         if ("false".equals(s_open))

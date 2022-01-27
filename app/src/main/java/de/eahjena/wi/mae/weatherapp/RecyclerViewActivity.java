@@ -24,6 +24,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * shows content.xml
+ * we execute the API call and get all the JSON Objects
+ * those JSON Objects are put into an array list which we hand over to the recycler view
+ * we also implement a method so that when an item from the recycler is clicked the details are shown
+ */
 public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener{
 
     public static final String EXTRA_NAME = "StationName";
@@ -51,6 +57,11 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         getData.execute();
     }
 
+    /**
+     *
+     * @param position -> the position from the item in the RecyclerViewList that was clicked
+     *                 when an item is clicked the DetailsActivity is called with all the details belonging to the selected petrol station
+     */
     @Override
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(RecyclerViewActivity.this, DetailsActivity.class);
