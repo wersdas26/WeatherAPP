@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     final static String TAG = "onLocationReceived";
     static String locationLat;
     static String locationLong;
+    static String spinnerRadius;
 
 
     @Override
@@ -72,21 +74,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
+        String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
+        ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, Umkreis);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUmkreis.setAdapter(adapter);
         dataButton = findViewById(R.id.btn_DataButton);
         dataButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * when "Tankstellen abrufen" button is clicked the selected radius from spinner is transformed
+             * to a string and put into the API Call + we call the RecyclerViewActivity class -> the content view
+             */
             @Override
             public void onClick(View v) {
-                //setContentView(R.layout.content);
+                spinnerRadius = spinnerUmkreis.getSelectedItem().toString();
+                //Toast.makeText(getApplicationContext(),spinnerRadius,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
                 startActivity(intent);
             }
         });
-        Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
-
-        String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Umkreis);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerUmkreis.setAdapter(adapter);
 
     }
         @Override

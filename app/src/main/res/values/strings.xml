@@ -22,11 +22,11 @@
     <string name="addresText">TextView</string>
 
     <string-array name="Umkreis">
-        <item>5 km</item>
-        <item>10 km</item>
-        <item>15 km</item>
-        <item>20 km</item>
-        <item>25 km</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
     </string-array>
 
 </resources>
