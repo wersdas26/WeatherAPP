@@ -16,11 +16,11 @@
         android:background="@drawable/button_background"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Wo bin ich?"
+        android:text="@string/wo_bin_ich"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_main_title"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="..."
+        android:gravity="center_vertical"
+        android:text="@string/location_text"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,10 +38,23 @@
         app:layout_constraintTop_toBottomOf="@+id/location_button" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="@string/addresText"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location_text" />
+
+    <TextView
+        android:id="@+id/tv_main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
         android:text="@string/main_title"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -80,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_background"
+        android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/Button_Data"

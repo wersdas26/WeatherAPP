@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/fuel_app_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WeatherAPP">
+        android:theme="@style/Theme.WeatherAPP"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".MainActivity"
             android:exported="true">

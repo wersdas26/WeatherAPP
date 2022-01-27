@@ -7,12 +7,18 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,22 +29,18 @@ import android.widget.TextView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
-import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
-
-
+/**
+ * shows activity_main.xml
+ * when App is started the GPS coordinates are shown + converted into address
+ * there is a dropdown menu available where you can select the radius in which youd like to search for petrol stations
+ * when nothing is selected from the dropdown menu the default is ????
+ * in this class we set the onClickListener for the "Tankstellen abrufen" button on the bottom of the screen -> when it is clicked the RecyclerViewActivity class is called
+ */
 public class MainActivity extends AppCompatActivity {
 
     //ActivityMainBinding binding;  //für content.xml wäre es ContentBinding
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
     Button locationButton;
     TextView locationTextView;
     Button dataButton;
-    private Spinner spinnerUmkreis;
+    TextView addressTextView;
+    final static String TAG = "onLocationReceived";
 
 
     @Override
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
+        Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
 
         String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Umkreis);
@@ -140,18 +143,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @SuppressLint("MissingPermission")
-        private void updateLocation() {
+        public void updateLocation() {
             FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
         }
 
-        private void onLocationReceived(Location location) {
-            String locationText = location.getLatitude() + " | " + location.getLongitude();
+        public void onLocationReceived(Location location) {
+            String locationLat = String.valueOf(location.getLatitude());
+            String locationLong = String.valueOf(location.getLongitude());
             locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText(locationText);
+            locationTextView.setText(locationLat+" | "+locationLong);
+            try {
+                Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                String address = addresses.get(0).getAddressLine(0);
+                addressTextView = findViewById(R.id.address_text);
+                addressTextView.setText(address);
+            } catch (Exception e){
+                //e.printStackTrace();
+                Log.e(TAG, "Geocoder Exception", e);
+            }
         }
 
-
+    /**
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.spinnerUmkreis) {
             String valuefromSpinner = parent.getItemAtPosition(position).toString();
@@ -159,14 +179,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param parent
+     */
     public void onNothingSelected(AdapterView<?> parent) {
+        //TODO
 
     }
-
-
-
-
-    }
+}
 
 
 
@@ -174,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/** private void initializeDescrList() {
+/* private void initializeDescrList() {
 
         descrList = new ArrayList<>();
         //now we pass the array list containing the descriptions as an argument to the layout

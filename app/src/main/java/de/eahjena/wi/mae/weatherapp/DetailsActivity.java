@@ -12,14 +12,14 @@ import static de.eahjena.wi.mae.weatherapp.RecyclerViewActivity.EXTRA_ZIP;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
-import de.eahjena.wi.mae.weatherapp.databinding.DetailViewBinding;
-
+/**
+ * we match the intent strings from RecyclerViewActivity to our textView in the detail_view.xml to
+ * show all details to a petrol station depending on which one was clicked in the recyclerView
+ */
 public class DetailsActivity extends AppCompatActivity {
 
     @Override

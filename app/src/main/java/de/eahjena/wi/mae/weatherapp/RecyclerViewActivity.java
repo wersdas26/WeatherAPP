@@ -1,16 +1,13 @@
 package de.eahjena.wi.mae.weatherapp;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
@@ -27,9 +24,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.eahjena.wi.mae.weatherapp.databinding.ActivityMainBinding;
-import de.eahjena.wi.mae.weatherapp.databinding.ContentBinding;
-
+/**
+ * shows content.xml
+ * we execute the API call and get all the JSON Objects
+ * those JSON Objects are put into an array list which we hand over to the recycler view
+ * we also implement a method so that when an item from the recycler is clicked the details are shown
+ */
 public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.OnItemClickListener{
 
     public static final String EXTRA_NAME = "StationName";
@@ -57,6 +57,11 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         getData.execute();
     }
 
+    /**
+     *
+     * @param position -> the position from the item in the RecyclerViewList that was clicked
+     *                 when an item is clicked the DetailsActivity is called with all the details belonging to the selected petrol station
+     */
     @Override
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(RecyclerViewActivity.this, DetailsActivity.class);
@@ -75,17 +80,35 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         startActivity(detailIntent);
     }
 
+    private void PutDataIntoRecyclerView(List<ContentModelClass> stationList){
+
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, stationList);
+        recyclerView.setLayoutManager((new LinearLayoutManager(this)));
+        recyclerView.setAdapter(recyclerAdapter);
+        recyclerAdapter.setOnItemClickListener(RecyclerViewActivity.this);
+    }
+
     public class GetData extends AsyncTask<String, String, String>{
+
+        final static String TAG = "GetData";
 
         @Override
         protected String doInBackground(String... strings) {
 
             String data = "";
+            String latidude;
+            String longitude;
+            String radius;
 
             try {
+
+
                 URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //Berlin: lat=52.517&lng=13.388
+                //EAH Jena lat=50.918&lng11.568
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
+                //Bsp.: https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
+                //https://creativecommons.tankerkoenig.de/json/list.php?"+latitude+"&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
                 // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
@@ -104,9 +127,12 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 return data;
             }
                  catch (MalformedURLException e) {
-                    e.printStackTrace();
+                    //TODO alle umbauen
+                    //e.printStackTrace();
+                    Log.e(TAG, "getData() malformed URL", e);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    Log.e(TAG, "getData() IOException", e);
                 }
 
 
@@ -127,7 +153,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
                     ContentModelClass modelClass = new ContentModelClass();
                     modelClass.setS_name(stationsJSONObject.getString("name"));
-                    modelClass.setS_open(stationsJSONObject.getString("isOpen"));
+                    modelClass.setShopOpen(stationsJSONObject.getString("isOpen"));
                     modelClass.setS_street(stationsJSONObject.getString("street"));
                     modelClass.setS_house_number(stationsJSONObject.getString("houseNumber"));
                     modelClass.setS_zip(stationsJSONObject.getString("postCode"));
@@ -142,24 +168,17 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                Log.e(TAG,"JSON Exception", e);
             }
 
             PutDataIntoRecyclerView(stationList);
 
         }
     }
-
-    private void PutDataIntoRecyclerView(List<ContentModelClass> stationList){
-
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, stationList);
-        recyclerView.setLayoutManager((new LinearLayoutManager(this)));
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerAdapter.setOnItemClickListener(RecyclerViewActivity.this);
-    }
 }
 
-          /**  ContentBinding binding;  //für content.xml wäre es ContentBinding
+          /*  ContentBinding binding;  //für content.xml wäre es ContentBinding
         ArrayList<String> descrList;
         //to implement ListView
         ArrayAdapter<String> listAdapter;
