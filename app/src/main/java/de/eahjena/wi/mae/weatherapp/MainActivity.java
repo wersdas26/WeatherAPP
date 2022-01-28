@@ -140,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onLocationReceived(Location location) {
-            locationLat = String.valueOf(location.getLatitude());
-            locationLong = String.valueOf(location.getLongitude());
+            locationLat = "Lat: " + (location.getLatitude());
+            locationLong = " | Lng: " + (location.getLongitude());
             locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText(locationLat+" | "+locationLong);
+            locationTextView.setText(locationLat + locationLong);
             try {
                 Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);

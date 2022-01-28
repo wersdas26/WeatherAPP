@@ -75,6 +75,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_spinner" />
+    <!--android:background="@drawable/spinner_outline"-->
 
     <TextView
         android:id="@+id/title_spinner"

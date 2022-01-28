@@ -20,6 +20,8 @@
     <string name="wo_bin_ich">Wo bin ich?</string>
     <string name="location_text">...</string>
     <string name="addresText">TextView</string>
+    <string name="StationName">Name der Tankstelle</string>
+    <string name="StationOpen">Geöffnet/Geschlossen</string>
 
     <string-array name="Umkreis">
         <item>5</item>

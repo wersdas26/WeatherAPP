@@ -1,6 +1,9 @@
 package de.eahjena.wi.mae.weatherapp;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +72,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
+            if (open.equals("Geschlossen")){
+                open.setTextColor(Color.RED);
+            }
+            else {
+                open.setTextColor(Color.argb(100,0,200,0));
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

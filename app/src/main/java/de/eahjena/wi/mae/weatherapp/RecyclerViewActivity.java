@@ -97,13 +97,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         protected String doInBackground(String... strings) {
 
             String data = "";
-            //String latidude = (String) MainActivity.locationTextView.getText();
-            //String longitude;
-            //String radius;
 
             try {
 
-                //String latitude = (String) MainActivity.locationTextView.getText();
                 String latitude = MainActivity.locationLat;
                 String longitude = MainActivity.locationLong;
                 String radius = MainActivity.spinnerRadius;
