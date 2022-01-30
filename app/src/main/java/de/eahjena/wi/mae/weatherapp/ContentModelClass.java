@@ -16,7 +16,6 @@ public class ContentModelClass {
     String s_price_e5;
     String s_price_e10;
     String s_price_diesel;
-    int s_img;
 
     //now we need a constructor where we pass those values above when we create an object
     public ContentModelClass() {
@@ -91,15 +90,6 @@ public class ContentModelClass {
 
     public String getS_brand() {return s_brand;}
     public void setS_brand(String s_brand) {this.s_brand = s_brand;}
-
-    public int getS_img() {
-        return s_img;
-    }
-
-    public void setS_img(int s_img) {
-        this.s_img = s_img;
-    }
-
 }
 
 

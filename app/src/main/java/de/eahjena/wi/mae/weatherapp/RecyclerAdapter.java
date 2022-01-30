@@ -61,25 +61,60 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
-        if ((mData.get(position).getS_open()).equals("Geschlossen")){
+        holder.name.setText(mData.get(position).getS_name());
+
+        if (mData.get(position).getS_open().equals("Geschlossen")){
+            holder.open.setText(mData.get(position).getS_open());
             holder.open.setTextColor(Color.RED);
         }
         else {
+            holder.open.setText(mData.get(position).getS_open());
             holder.open.setTextColor(Color.argb(100,0,200,0));
         }
 
-        String jet = "JET";
-        if ((mData.get(position).getS_brand()).equals(jet)){
-            holder.icon.setImageResource(R.drawable.jet);
-        }
-        else {
-            holder.icon.setImageResource(R.drawable.agip);
-        }
-
-        holder.name.setText(mData.get(position).getS_name());
-        holder.open.setText(mData.get(position).getS_open());
         holder.brand.setText(mData.get(position).getS_brand());
-        holder.icon.setImageResource(mData.get(position).getS_img());
+        if(mData.get(position).getS_brand().equalsIgnoreCase("aral")){
+            holder.icon.setImageResource(R.drawable.aral);
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("jet")){
+            holder.icon.setImageResource(R.drawable.jet);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase("TotalEnergies")){
+            holder.icon.setImageResource(R.drawable.total);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase("Shell")){
+            holder.icon.setImageResource(R.drawable.shell);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Agip")){
+            holder.icon.setImageResource(R.drawable.agip);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "bft")){
+            holder.icon.setImageResource(R.drawable.bft);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "AVIA")){
+            holder.icon.setImageResource(R.drawable.avia);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Baywa")){
+            holder.icon.setImageResource(R.drawable.baywa);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Esso")){
+            holder.icon.setImageResource(R.drawable.esso);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Go")){
+            holder.icon.setImageResource(R.drawable.go);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "HEM")){
+            holder.icon.setImageResource(R.drawable.hem);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OIL!")){
+            holder.icon.setImageResource(R.drawable.oil);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OMV")){
+            holder.icon.setImageResource(R.drawable.omv);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Star")){
+            holder.icon.setImageResource(R.drawable.star);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Elan")){
+            holder.icon.setImageResource(R.drawable.elan);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Raiffeisen")){
+            holder.icon.setImageResource(R.drawable.raiffeisen);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Globus SB Warenhaus")){
+            holder.icon.setImageResource(R.drawable.globus);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Gulf")){
+            holder.icon.setImageResource(R.drawable.gulf);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Marktkauf")){
+            holder.icon.setImageResource(R.drawable.marktkauf);
+
+        }else {
+            holder.icon.setImageResource(R.drawable.appicon);
+        }
     }
 
     @Override
