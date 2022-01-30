@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,8 +63,61 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getS_name());
-        holder.open.setText(mData.get(position).getS_open());
-        //holder.brand.setText(mData.get(position).getS_brand());
+
+        if(mData.get(position).getS_open() == "Geschlossen") {
+
+            holder.open.setText(mData.get(position).getS_open());
+            holder.open.setTextColor(Color.RED);
+
+        }else{
+            holder.open.setText(mData.get(position).getS_open());
+            holder.open.setTextColor(Color.GREEN);
+        }
+        holder.brand.setText(mData.get(position).getS_brand());
+        Log.i("AUSGABE",""+position+mData.get(position).getS_brand());
+        if(mData.get(position).getS_brand().equalsIgnoreCase("aral")){
+            Log.i("AUSGABE","Er checkts");
+            holder.icon.setImageResource(R.drawable.aral);
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("jet")){
+            holder.icon.setImageResource(R.drawable.jet);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase("TotalEnergies")){
+            holder.icon.setImageResource(R.drawable.total);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase("Shell")){
+            holder.icon.setImageResource(R.drawable.shell);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Agip")){
+            holder.icon.setImageResource(R.drawable.agip);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "bft")){
+            holder.icon.setImageResource(R.drawable.bft);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "AVIA")){
+            holder.icon.setImageResource(R.drawable.avia);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Baywa")){
+            holder.icon.setImageResource(R.drawable.baywa);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Esso")){
+            holder.icon.setImageResource(R.drawable.esso);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Go")){
+            holder.icon.setImageResource(R.drawable.go);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "HEM")){
+            holder.icon.setImageResource(R.drawable.hem);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OIL!")){
+            holder.icon.setImageResource(R.drawable.oil);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OMV")){
+            holder.icon.setImageResource(R.drawable.omv);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Star")){
+            holder.icon.setImageResource(R.drawable.star);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Elan")){
+            holder.icon.setImageResource(R.drawable.elan);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Raiffeisen")){
+            holder.icon.setImageResource(R.drawable.raiffeisen);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Globus SB Warenhaus")){
+            holder.icon.setImageResource(R.drawable.globus);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Gulf")){
+            holder.icon.setImageResource(R.drawable.gulf);
+        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Marktkauf")){
+            holder.icon.setImageResource(R.drawable.marktkauf);
+
+        }else {
+            holder.icon.setImageResource(R.drawable.appicon);
+        }
     }
 
     @Override
@@ -75,31 +129,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         TextView name;
         TextView open;
-        //TextView brand;
-        //ImageView icon;
+        TextView brand;
+        ImageView icon;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
+            /*
             if (open.getText().toString().equals("Geschlossen")){
                 open.setTextColor(Color.RED);
             }
             else {
                 open.setTextColor(Color.argb(100,0,200,0));
             }
-
-            /*brand = itemView.findViewById(R.id.tv_brand);
+            */
+            brand = itemView.findViewById(R.id.tv_brand);
             icon = itemView.findViewById(R.id.StationIcon);
-            String jet = "JET";
+            /*String jet = "JET";
             if (brand.getText().toString().equals(jet)){
                 icon.setImageResource(R.drawable.jet);
             }
             else {
                 icon.setImageResource(R.drawable.agip);
             }*/
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
