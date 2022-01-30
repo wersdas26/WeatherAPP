@@ -156,6 +156,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     JSONObject stationsJSONObject = stations.getJSONObject(i);
 
                     ContentModelClass modelClass = new ContentModelClass();
+                    modelClass.setS_brand(stationsJSONObject.getString("brand"));
                     modelClass.setS_name(stationsJSONObject.getString("name"));
                     modelClass.setShopOpen(stationsJSONObject.getString("isOpen"));
                     modelClass.setS_street(stationsJSONObject.getString("street"));
