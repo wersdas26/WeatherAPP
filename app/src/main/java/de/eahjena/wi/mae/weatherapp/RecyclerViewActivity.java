@@ -62,6 +62,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
      * @param position -> the position from the item in the RecyclerViewList that was clicked
      *                 when an item is clicked the DetailsActivity is called with all the details
      *                 belonging to the selected petrol station
+     *
+     *  putExtra -> is used to send information between activities -> sends a copy of the object
      */
     @Override
     public void onItemClick(int position) {
@@ -89,6 +91,12 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         recyclerAdapter.setOnItemClickListener(RecyclerViewActivity.this);
     }
 
+    /**
+     *  AsyncTask -> for using threads <Params, Progress, Result>
+     *      Param -> type of parameters sent to the task upn execution
+     *      Progress -> type of progress units used in the background computation
+     *      Result -> type of result from the background computation
+     */
     public class GetData extends AsyncTask<String, String, String>{
 
         final static String TAG = "GetData";
@@ -97,26 +105,20 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         protected String doInBackground(String... strings) {
 
             String data = "";
-            //String latidude = (String) MainActivity.locationTextView.getText();
-            //String longitude;
-            String radius;
 
             try {
-
-                //String latitude = (String) MainActivity.locationTextView.getText();
                 String latitude = MainActivity.locationLat;
                 String longitude = MainActivity.locationLong;
-                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat="+latitude+"&lng="+longitude+"&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
+                String radius = MainActivity.spinnerRadius;
+                URL url = new URL("https://creativecommons.tankerkoenig.de/json/list.php?lat="+latitude+"&lng="+longitude+"&rad="+radius+"&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719");
                 //Berlin: lat=52.517&lng=13.388
                 //EAH Jena lat=50.918&lng11.568
                 //API Key: 5fde221a-19b1-a8a1-1f7c-a032f0239719
                 //Bsp.: https://creativecommons.tankerkoenig.de/json/list.php?lat=52.517&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
-                //https://creativecommons.tankerkoenig.de/json/list.php?"+latitude+"&lng=13.388&rad=15&sort=dist&type=all&apikey=5fde221a-19b1-a8a1-1f7c-a032f0239719
-                // Wetter API"https://api.openweathermap.org/data/2.5/weather?q=Jena&appid=be9602aaf7947a3d73acd26e36336e07&lang=de"
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 //to read the data we need:
                 InputStream inputStream = httpURLConnection.getInputStream();
-                //to read data from InputStream we need:
+                //to read data from InputStream:
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
                 String line;
@@ -130,19 +132,18 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 return data;
             }
                  catch (MalformedURLException e) {
-                    //TODO alle umbauen
-                    //e.printStackTrace();
                     Log.e(TAG, "getData() malformed URL", e);
                 } catch (IOException e) {
-                    //e.printStackTrace();
                     Log.e(TAG, "getData() IOException", e);
                 }
-
 
             return data;
         }
 
-        //String is passed to postExecute -> analyzes String -> gets JSON Object -> passes to ModelClass -> passes to Adapterclass which displays into RecyclerView
+        /**
+         *  Json Array "stations" that we get from API Call is analyzed -> gets JSON Objects -> passes to ModelClass
+         *      -> passes to AdapterClass which displays into RecyclerView
+         */
         @Override
         protected void onPostExecute(String s){
             //super.onPostExecute(s);

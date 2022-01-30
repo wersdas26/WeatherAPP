@@ -11,13 +11,14 @@ import static de.eahjena.wi.mae.weatherapp.RecyclerViewActivity.EXTRA_STREET;
 import static de.eahjena.wi.mae.weatherapp.RecyclerViewActivity.EXTRA_ZIP;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
- * we match the intent strings from RecyclerViewActivity to our textView in the detail_view.xml to
+ * we match the intent extra-strings from RecyclerViewActivity to our textViews in the detail_view.xml to
  * show all details to a petrol station depending on which one was clicked in the recyclerView
  */
 public class DetailsActivity extends AppCompatActivity {
@@ -48,6 +49,12 @@ public class DetailsActivity extends AppCompatActivity {
 
         textViewName.setText(StationName);
         textViewOpen.setText(StationOpen);
+        if ("Geöffnet".equals(StationOpen)){
+            textViewOpen.setTextColor(Color.argb(100,0,200,0));
+        }
+        else {
+            textViewOpen.setTextColor(Color.RED);
+        }
         textViewStreet.setText("Adresse: "+StationStreet+" "+StationHouseNumber+"\n\t\t\t\t\t\t\t\t"+StationZip+" "+StationCity);
         textViewPriceE5.setText("E5: "+StationPriceE5+" €");
         textViewPriceE10.setText("E10: "+StationPriceE10+" €");

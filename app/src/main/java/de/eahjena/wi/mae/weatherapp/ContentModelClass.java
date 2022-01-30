@@ -49,12 +49,12 @@ public class ContentModelClass {
 
         if ("false".equals(s_open))
         {
-            s_open = "Nein";
+            s_open = "Geschlossen";
         }
         else {
-            s_open = "Ja";
+            s_open = "Geöffnet";
         }
-        this.s_open = "Zur Zeit geöffnet?" + s_open;
+        this.s_open = s_open;
     }
 
     public String getS_street(){
