@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         dataButton = findViewById(R.id.btn_DataButton);
         dataButton.setOnClickListener(new View.OnClickListener() {
             /**
-             * when "Tankstellen abrufen" button is clicked the selected radius from spinner is transformed.
+             * when "Tankstellen abrufen" button is clicked the selected radius from spinner is transformed......
              * to a string and put into the API Call + we call the RecyclerViewActivity class -> the content layout.xml opens
              */
             @Override
@@ -108,9 +108,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
         private void onLocationButtonClick() {
+        //context.compat checks if we already have the permission
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 updateLocation();
             } else {
+                //otherwise you need to get the permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
