@@ -61,9 +61,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
+        if ((mData.get(position).getS_open()).equals("Geschlossen")){
+            holder.open.setTextColor(Color.RED);
+        }
+        else {
+            holder.open.setTextColor(Color.argb(100,0,200,0));
+        }
+
+        String jet = "JET";
+        if ((mData.get(position).getS_brand()).equals(jet)){
+            holder.icon.setImageResource(R.drawable.jet);
+        }
+        else {
+            holder.icon.setImageResource(R.drawable.agip);
+        }
+
         holder.name.setText(mData.get(position).getS_name());
         holder.open.setText(mData.get(position).getS_open());
-        //holder.brand.setText(mData.get(position).getS_brand());
+        holder.brand.setText(mData.get(position).getS_brand());
+        holder.icon.setImageResource(mData.get(position).getS_img());
     }
 
     @Override
@@ -75,24 +91,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         TextView name;
         TextView open;
-        //TextView brand;
-        //ImageView icon;
+        TextView brand;
+        ImageView icon;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
-            if (open.getText().toString().equals("Geschlossen")){
+           /* if (open.getText().toString().equals("Geschlossen")){
                 open.setTextColor(Color.RED);
             }
             else {
                 open.setTextColor(Color.argb(100,0,200,0));
-            }
+            }*/
 
-            /*brand = itemView.findViewById(R.id.tv_brand);
+            brand = itemView.findViewById(R.id.tv_brand);
             icon = itemView.findViewById(R.id.StationIcon);
-            String jet = "JET";
+           /* String jet = "JET";
             if (brand.getText().toString().equals(jet)){
                 icon.setImageResource(R.drawable.jet);
             }

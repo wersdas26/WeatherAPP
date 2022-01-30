@@ -167,7 +167,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     modelClass.setS_price_e10(stationsJSONObject.getString("e10"));
                     modelClass.setS_price_diesel(stationsJSONObject.getString("diesel"));
 
-
                     stationList.add(modelClass);
                 }
 
