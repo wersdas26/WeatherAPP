@@ -22,6 +22,7 @@
     <string name="addresText">TextView</string>
     <string name="StationName">Name der Tankstelle</string>
     <string name="StationOpen">Geöffnet/Geschlossen</string>
+    <string name="StationPicture">Tankstellen Logo</string>
 
     <string-array name="Umkreis">
         <item>5</item>
