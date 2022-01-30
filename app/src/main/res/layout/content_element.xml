@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--android:layout_weight="40"
         android:gravity="center"-->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tv_station_name"
