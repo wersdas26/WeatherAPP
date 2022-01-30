@@ -115,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
                     requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
             }
-
-
         }
 
         @Override
@@ -149,29 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Geocoder Exception", e);
             }
         }
-
-    /**
-     *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
-     */
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.spinnerUmkreis) {
-            String valuefromSpinner = parent.getItemAtPosition(position).toString();
-
-        }
-    }
-
-    /**
-     *
-     * @param parent
-     */
-    public void onNothingSelected(AdapterView<?> parent) {
-        //TODO
-
-    }
 }
 
 
