@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         dataButton = findViewById(R.id.btn_DataButton);
         dataButton.setOnClickListener(new View.OnClickListener() {
             /**
-             * when "Tankstellen abrufen" button is clicked the selected radius from spinner is transformed
+             * when "Tankstellen abrufen" button is clicked the selected radius from spinner is transformed.
              * to a string and put into the API Call + we call the RecyclerViewActivity class -> the content layout.xml opens
              */
             @Override
