@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             locationLat = String.valueOf((location.getLatitude()));
             locationLong = String.valueOf((location.getLongitude()));
             locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText("Lat: " + locationLat + " | Long: " + locationLong);
+            locationTextView.setText("Lat: " + locationLat + " | Lng: " + locationLong);
             try {
                 Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);

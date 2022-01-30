@@ -72,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
-            if (open.equals("Geschlossen")){
+            if (open.getText().toString().equals("Geschlossen")){
                 open.setTextColor(Color.RED);
             }
             else {
