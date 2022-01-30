@@ -1,7 +1,12 @@
 package de.eahjena.wi.mae.weatherapp;
 
+/**
+ * in this class we declare all strings/attributes of the petrol stations that we want to display in the app
+ * every attribute gets a getter+setter method
+ */
 public class ContentModelClass {
 
+    String s_brand;
     String s_name;
     String s_open;
     String s_street;
@@ -13,21 +18,6 @@ public class ContentModelClass {
     String s_price_diesel;
 
     //now we need a constructor where we pass those values above when we create an object
-    public ContentModelClass (String station_name, String station_open, String station_street,
-                              String station_house_number, String station_zip, String station_city,
-                              String station_price_e5, String station_price_e10, String station_price_diesel){
-        s_name = station_name;
-        s_open = station_open;
-        s_street = station_street;
-        s_house_number = station_house_number;
-        s_zip = station_zip;
-        s_city = station_city;
-        s_price_e5 = station_price_e5;
-        s_price_e10 = station_price_e10;
-        s_price_diesel = station_price_diesel;
-
-    }
-
     public ContentModelClass() {
     }
 
@@ -41,15 +31,16 @@ public class ContentModelClass {
     public String getS_open() {
         return s_open;
     }
-    public void setS_open(String s_open) {
-        if (s_open == "false")
+    public void setShopOpen(String s_open) {
+
+        if ("false".equals(s_open))
         {
-            s_open = "Nein";
+            s_open = "Geschlossen";
         }
         else {
-            s_open = "Ja";
+            s_open = "Geöffnet";
         }
-        this.s_open = "Zur Zeit geöffnet?" + s_open;
+        this.s_open = s_open;
     }
 
     public String getS_street(){
@@ -96,4 +87,24 @@ public class ContentModelClass {
     public void setS_price_diesel(String s_price_diesel) {
         this.s_price_diesel = s_price_diesel;
     }
+
+    public String getS_brand() {return s_brand;}
+    public void setS_brand(String s_brand) {this.s_brand = s_brand;}
 }
+
+
+
+ /*public ContentModelClass (String station_name, String station_open, String station_street,
+                              String station_house_number, String station_zip, String station_city,
+                              String station_price_e5, String station_price_e10, String station_price_diesel){
+        s_name = station_name;
+        s_open = station_open;
+        s_street = station_street;
+        s_house_number = station_house_number;
+        s_zip = station_zip;
+        s_city = station_city;
+        s_price_e5 = station_price_e5;
+        s_price_e10 = station_price_e10;
+        s_price_diesel = station_price_diesel;
+
+    }*/

@@ -9,13 +9,26 @@
     <string name="details_placeholder">bla \nbla \nbla</string>
     <string name="station_name">placeholder</string>
     <string name="station_open">placeholder</string>
-    <string name="spinner_title">Wähle den gewünschten Umkreis aus:</string>
+    <string name="location_btn">Wo bin ich?</string>
+    <string name="spinner_title">Wähle den gewünschten Radius in Kilometern aus:</string>
+    <string name="detail_name">Name</string>
+    <string name="detail_address">Adresse</string>
+    <string name="detail_e5">E5</string>
+    <string name="detail_e10">E10</string>
+    <string name="detaildiesel">Diesel</string>
+    <string name="detail_open">Geöffnet?</string>
+    <string name="wo_bin_ich">Wo bin ich?</string>
+    <string name="location_text">...</string>
+    <string name="addresText">TextView</string>
+    <string name="StationName">Name der Tankstelle</string>
+    <string name="StationOpen">Geöffnet/Geschlossen</string>
 
     <string-array name="Umkreis">
-        <item>5 km</item>
-        <item>10 km</item>
-        <item>15 km</item>
-        <item>20 km</item>
-        <item>25 km</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
     </string-array>
+
 </resources>

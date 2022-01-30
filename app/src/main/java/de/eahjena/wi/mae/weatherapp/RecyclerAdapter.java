@@ -1,6 +1,10 @@
 package de.eahjena.wi.mae.weatherapp;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * Adapter connects data with the RecyclerView
+ * We use the getter methods from ContenModelClass to display the Text for each petrol station in the recyclerView in the content.xml
+ */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
     Context mContext;
@@ -43,12 +51,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     }
 
-    //we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
+    /**
+     *
+     * @param holder -> our RecyclerViewHolder
+     * @param position -> we use this position to get the current item out of the array list and match it to the TextView
+     *  we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getS_name());
         holder.open.setText(mData.get(position).getS_open());
+        holder.brand.setText(mData.get(position).getS_brand());
     }
 
     @Override
@@ -60,12 +74,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         TextView name;
         TextView open;
+        TextView brand;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
+            if (open.getText().toString().equals("Geschlossen")){
+                open.setTextColor(Color.RED);
+            }
+            else {
+                open.setTextColor(Color.argb(100,0,200,0));
+            }
+            brand = itemView.findViewById(R.id.tv_brand);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
