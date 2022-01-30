@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -62,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         holder.name.setText(mData.get(position).getS_name());
         holder.open.setText(mData.get(position).getS_open());
-        holder.brand.setText(mData.get(position).getS_brand());
+        //holder.brand.setText(mData.get(position).getS_brand());
     }
 
     @Override
@@ -74,7 +75,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         TextView name;
         TextView open;
-        TextView brand;
+        //TextView brand;
+        //ImageView icon;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,7 +89,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             else {
                 open.setTextColor(Color.argb(100,0,200,0));
             }
-            brand = itemView.findViewById(R.id.tv_brand);
+
+            /*brand = itemView.findViewById(R.id.tv_brand);
+            icon = itemView.findViewById(R.id.StationIcon);
+            String jet = "JET";
+            if (brand.getText().toString().equals(jet)){
+                icon.setImageResource(R.drawable.jet);
+            }
+            else {
+                icon.setImageResource(R.drawable.agip);
+            }*/
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
