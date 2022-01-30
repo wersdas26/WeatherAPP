@@ -6,6 +6,7 @@ package de.eahjena.wi.mae.weatherapp;
  */
 public class ContentModelClass {
 
+    String s_brand;
     String s_name;
     String s_open;
     String s_street;
@@ -86,6 +87,9 @@ public class ContentModelClass {
     public void setS_price_diesel(String s_price_diesel) {
         this.s_price_diesel = s_price_diesel;
     }
+
+    public String getS_brand() {return s_brand;}
+    public void setS_brand(String s_brand) {this.s_brand = s_brand;}
 }
 
 

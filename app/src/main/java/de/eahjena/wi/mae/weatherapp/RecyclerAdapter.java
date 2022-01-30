@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         holder.name.setText(mData.get(position).getS_name());
         holder.open.setText(mData.get(position).getS_open());
+        holder.brand.setText(mData.get(position).getS_brand());
     }
 
     @Override
@@ -72,6 +74,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         TextView name;
         TextView open;
+        TextView brand;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,6 +87,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             else {
                 open.setTextColor(Color.argb(100,0,200,0));
             }
+            brand = itemView.findViewById(R.id.tv_brand);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
