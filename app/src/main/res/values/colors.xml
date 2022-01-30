@@ -6,4 +6,6 @@
     <color name="anotherblue">#5A6AC2</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="red">#E62027</color>
+    <color name="grey">#DBDBDB</color>
 </resources>

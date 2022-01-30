@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Adapter connects data with the RecyclerView
- * We use the getter methods from ContenModelClass to display the Text for each petrol station in the recyclerView in the content.xml
+ * We use the getter methods from ContentModelClass to display the Text for each petrol station in the recyclerView in the content.xml
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
