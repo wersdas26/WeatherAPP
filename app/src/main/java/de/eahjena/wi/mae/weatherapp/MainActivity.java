@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     static String locationLong;
     static String spinnerRadius;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
         private void onLocationButtonClick() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 updateLocation();
@@ -117,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
             }
+
 
         }
 

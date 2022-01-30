@@ -17,21 +17,6 @@ public class ContentModelClass {
     String s_price_diesel;
 
     //now we need a constructor where we pass those values above when we create an object
-    public ContentModelClass (String station_name, String station_open, String station_street,
-                              String station_house_number, String station_zip, String station_city,
-                              String station_price_e5, String station_price_e10, String station_price_diesel){
-        s_name = station_name;
-        s_open = station_open;
-        s_street = station_street;
-        s_house_number = station_house_number;
-        s_zip = station_zip;
-        s_city = station_city;
-        s_price_e5 = station_price_e5;
-        s_price_e10 = station_price_e10;
-        s_price_diesel = station_price_diesel;
-
-    }
-
     public ContentModelClass() {
     }
 
@@ -102,3 +87,20 @@ public class ContentModelClass {
         this.s_price_diesel = s_price_diesel;
     }
 }
+
+
+
+ /*public ContentModelClass (String station_name, String station_open, String station_street,
+                              String station_house_number, String station_zip, String station_city,
+                              String station_price_e5, String station_price_e10, String station_price_diesel){
+        s_name = station_name;
+        s_open = station_open;
+        s_street = station_street;
+        s_house_number = station_house_number;
+        s_zip = station_zip;
+        s_city = station_city;
+        s_price_e5 = station_price_e5;
+        s_price_e10 = station_price_e10;
+        s_price_diesel = station_price_diesel;
+
+    }*/

@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 /**
- * we use the getter methods from ContenModelClass to display the Text for each petrol station in the recyclerView in the content.xml
+ * Adapter connects data with the RecyclerView
+ * We use the getter methods from ContenModelClass to display the Text for each petrol station in the recyclerView in the content.xml
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
 
@@ -49,7 +50,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     }
 
-    //we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
+    /**
+     *
+     * @param holder -> our RecyclerViewHolder
+     * @param position -> we use this position to get the current item out of the array list and match it to the TextView
+     *  we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
