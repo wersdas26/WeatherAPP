@@ -1,7 +1,6 @@
 package de.eahjena.wi.mae.weatherapp;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;

@@ -23,6 +23,7 @@
     <string name="StationName">Name der Tankstelle</string>
     <string name="StationOpen">Geöffnet/Geschlossen</string>
     <string name="StationPicture">Tankstellen Logo</string>
+    <string name="tv_brand">Brand</string>
 
     <string-array name="Umkreis">
         <item>5</item>
