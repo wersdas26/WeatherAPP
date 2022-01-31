@@ -70,6 +70,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         //for the petrol station icons we now compare the values of the "brand" JSON Object that we receive
         //with Strings and then set the according icon when its a match
+        //test
         holder.brand.setText(mData.get(position).getS_brand());
         if (mData.get(position).getS_brand().equalsIgnoreCase("aral")) {
             holder.icon.setImageResource(R.drawable.aral);
