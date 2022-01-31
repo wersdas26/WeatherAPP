@@ -39,7 +39,6 @@ public class DetailsActivity extends AppCompatActivity {
         String StationPriceE10 = intent.getStringExtra(EXTRA_E10);
         String StationPriceDiesel = intent.getStringExtra(EXTRA_DIESEL);
 
-
         TextView textViewName = findViewById(R.id.tvd_station_name);
         TextView textViewOpen = findViewById(R.id.tvd_open);
         TextView textViewStreet = findViewById(R.id.tv_station_address);
@@ -59,7 +58,6 @@ public class DetailsActivity extends AppCompatActivity {
         textViewPriceE5.setText("E5: "+StationPriceE5+" €");
         textViewPriceE10.setText("E10: "+StationPriceE10+" €");
         textViewPriceDiesel.setText("Diesel: "+StationPriceDiesel+" €");
-
     }
 }
 

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_main);
                 onLocationButtonClick();
             }
-
         });
 
         Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
@@ -88,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
         @Override
         protected void onResume() {
             super.onResume();
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             thread.start();
-
     }
 
         private void onLocationButtonClick() {
@@ -148,11 +146,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 }
-
-
-
-
-
 
 
 /*
