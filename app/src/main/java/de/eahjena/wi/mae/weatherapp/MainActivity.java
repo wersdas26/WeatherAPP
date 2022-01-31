@@ -45,7 +45,7 @@ import java.util.Locale;
  */
 public class MainActivity extends AppCompatActivity {
 
-    Button locationButton;
+    //Button locationButton;
     TextView locationTextView;
     Button dataButton;
     TextView addressTextView;
@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        locationButton = findViewById(R.id.location_button);
+        /*locationButton = findViewById(R.id.location_button);
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.activity_main);
                 onLocationButtonClick();
             }
-        });
+        });*/
 
         Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
         String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+        //if permission granted -> method onLocationButtonClick is running all the time
         @Override
         protected void onResume() {
             super.onResume();
@@ -106,15 +107,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
         private void onLocationButtonClick() {
+            //context.compat checks if we already have the permission
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 updateLocation();
             } else {
+                //otherwise you need to get the permission --> checks if version is greater than or equal to marshmallow // asks user if he gives permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
                 }
             }
         }
 
+        //this method is called when the user has decided whether to grant the permission or not
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -123,12 +127,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        /*fusedlocationprovider (google services)
+        getlastloation as soon as the retrieval of the location was successful
+        addOnSuccessListener ("continue with this method when you are done")
+        SuppressLint because we have already checked whether the authorization is given*/
         @SuppressLint("MissingPermission")
         public void updateLocation() {
             FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
         }
 
+        //transfer the values
         public void onLocationReceived(Location location) {
             locationLat = String.valueOf((location.getLatitude()));
             locationLong = String.valueOf((location.getLongitude()));
