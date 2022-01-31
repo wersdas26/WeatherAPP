@@ -32,7 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     //link the activity to the Listener
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
@@ -54,68 +54,67 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     /**
-     *
-     * @param holder -> our RecyclerViewHolder
+     * @param holder   -> our RecyclerViewHolder
      * @param position -> we use this position to get the current item out of the array list and match it to the TextView
-     *  we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
+     *                 we dont set the OnClickListener here because then it will be set everytime when we scroll through the list
      */
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getS_name());
 
-        if(mData.get(position).getS_open() == "Geschlossen") {
+        if (mData.get(position).getS_open() == "Geschlossen") {
 
             holder.open.setText(mData.get(position).getS_open());
             holder.open.setTextColor(Color.RED);
 
-        }else{
+        } else {
             holder.open.setText(mData.get(position).getS_open());
             holder.open.setTextColor(Color.GREEN);
         }
         holder.brand.setText(mData.get(position).getS_brand());
-        Log.i("AUSGABE",""+position+mData.get(position).getS_brand());
-        if(mData.get(position).getS_brand().equalsIgnoreCase("aral")){
-            Log.i("AUSGABE","Er checkts");
+        Log.i("AUSGABE", "" + position + mData.get(position).getS_brand());
+        if (mData.get(position).getS_brand().equalsIgnoreCase("aral")) {
+            Log.i("AUSGABE", "Er checkts");
             holder.icon.setImageResource(R.drawable.aral);
-        } else if (mData.get(position).getS_brand().equalsIgnoreCase("jet")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("jet")) {
             holder.icon.setImageResource(R.drawable.jet);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase("TotalEnergies")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("TotalEnergies")) {
             holder.icon.setImageResource(R.drawable.total);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase("Shell")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Shell")) {
             holder.icon.setImageResource(R.drawable.shell);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Agip")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Agip")) {
             holder.icon.setImageResource(R.drawable.agip);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "bft")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("bft")) {
             holder.icon.setImageResource(R.drawable.bft);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "AVIA")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("AVIA")) {
             holder.icon.setImageResource(R.drawable.avia);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Baywa")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Baywa")) {
             holder.icon.setImageResource(R.drawable.baywa);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Esso")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Esso")) {
             holder.icon.setImageResource(R.drawable.esso);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Go")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Go")) {
             holder.icon.setImageResource(R.drawable.go);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "HEM")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("HEM")) {
             holder.icon.setImageResource(R.drawable.hem);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OIL!")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("OIL!")) {
             holder.icon.setImageResource(R.drawable.oil);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "OMV")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("OMV")) {
             holder.icon.setImageResource(R.drawable.omv);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Star")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Star")) {
             holder.icon.setImageResource(R.drawable.star);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Elan")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Elan")) {
             holder.icon.setImageResource(R.drawable.elan);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Raiffeisen")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Raiffeisen")) {
             holder.icon.setImageResource(R.drawable.raiffeisen);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Globus SB Warenhaus")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Globus SB Warenhaus")) {
             holder.icon.setImageResource(R.drawable.globus);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Gulf")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Gulf")) {
             holder.icon.setImageResource(R.drawable.gulf);
-        }else if(mData.get(position).getS_brand().equalsIgnoreCase( "Marktkauf")){
+        } else if (mData.get(position).getS_brand().equalsIgnoreCase("Marktkauf")) {
             holder.icon.setImageResource(R.drawable.marktkauf);
 
-        }else {
+        } else {
             holder.icon.setImageResource(R.drawable.appicon);
         }
     }
@@ -125,7 +124,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return mData.size();
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
         TextView open;
@@ -147,7 +146,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             */
             brand = itemView.findViewById(R.id.tv_brand);
             icon = itemView.findViewById(R.id.StationIcon);
-            /*String jet = "JET";
+            /*
             if (brand.getText().toString().equals(jet)){
                 icon.setImageResource(R.drawable.jet);
             }
@@ -158,9 +157,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mListener != null){
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             mListener.onItemClick(position);
                         }
                     }

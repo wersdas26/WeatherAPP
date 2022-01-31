@@ -41,7 +41,7 @@ import java.util.Locale;
  * there is a dropdown menu available where you can select the radius in which youd like to search for petrol stations
  * when nothing is selected from the dropdown menu the default is 5km
  * in this class we set the onClickListener for the "Tankstellen abrufen" button on the bottom of the screen
- *     -> when it is clicked the RecyclerViewActivity class is called
+ * -> when it is clicked the RecyclerViewActivity class is called
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -59,14 +59,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        locationButton = findViewById(R.id.location_button);
+       /* locationButton = findViewById(R.id.location_button);
         locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.activity_main);
                 onLocationButtonClick();
             }
-        });
+        });*/
 
         Spinner spinnerUmkreis = findViewById(R.id.spinnerUmkreis); //Dropdown-Menü
         String[] Umkreis = getResources().getStringArray(R.array.Umkreis);
@@ -89,64 +89,69 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-        @Override
-        protected void onResume() {
-            super.onResume();
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        onLocationButtonClick();
-                    } catch (Exception e) {
-                        Log.e(TAG2, "Exception onLocationButtonClick()", e);
-                    }
+    //if permission granted -> method onLocationButtonClick is running all the time
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    onLocationButtonClick();
+                } catch (Exception e) {
+                    Log.e(TAG2, "Exception onLocationButtonClick()", e);
                 }
-            });
-            thread.start();
+            }
+        });
+        thread.start();
     }
 
-        private void onLocationButtonClick() {
+    private void onLocationButtonClick() {
         //context.compat checks if we already have the permission
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                updateLocation();
-            } else {
-                //otherwise you need to get the permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-                }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            updateLocation();
+        } else {
+            //otherwise you need to get the permission --> checks if version is greater than or equal to marshmallow // asks user if he gives permission
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             }
         }
-
-        @Override
-        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                updateLocation();
-            }
+    }
+    //this method is called when the user has decided whether to grant the permission or not
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            updateLocation();
         }
+    }
 
-        @SuppressLint("MissingPermission")
-        public void updateLocation() {
-            FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
+    /*fusedlocationprovider (google services)
+    getlastloation as soon as the retrieval of the location was successful
+    addOnSuccessListener ("continue with this method when you are done")
+    SuppressLint because we have already checked whether the authorization is given*/
+    @SuppressLint("MissingPermission")
+    public void updateLocation() {
+        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this::onLocationReceived);
+    }
+    //transfer the values
+    public void onLocationReceived(Location location) {
+        locationLat = String.valueOf((location.getLatitude()));
+        locationLong = String.valueOf((location.getLongitude()));
+        locationTextView = findViewById(R.id.location_text);
+        locationTextView.setText("Lat: " + locationLat + " | Lng: " + locationLong);
+        try {
+            Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            String address = addresses.get(0).getAddressLine(0);
+            addressTextView = findViewById(R.id.address_text);
+            addressTextView.setText(address);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.e(TAG, "Geocoder Exception", e);
         }
-
-        public void onLocationReceived(Location location) {
-            locationLat = String.valueOf((location.getLatitude()));
-            locationLong = String.valueOf((location.getLongitude()));
-            locationTextView = findViewById(R.id.location_text);
-            locationTextView.setText("Lat: " + locationLat + " | Lng: " + locationLong);
-            try {
-                Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
-                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                String address = addresses.get(0).getAddressLine(0);
-                addressTextView = findViewById(R.id.address_text);
-                addressTextView.setText(address);
-            } catch (Exception e){
-                //e.printStackTrace();
-                Log.e(TAG, "Geocoder Exception", e);
-            }
-        }
+    }
 }
 
 
