@@ -1,7 +1,6 @@
 package de.eahjena.wi.mae.weatherapp;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -128,7 +127,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     data = data + line;
 
                 }
-
                 return data;
             }
                  catch (MalformedURLException e) {
@@ -136,7 +134,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 } catch (IOException e) {
                     Log.e(TAG, "getData() IOException", e);
                 }
-
             return data;
         }
 
@@ -172,14 +169,12 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     stationList.add(modelClass);
                 }
 
-
             } catch (JSONException e) {
                 //e.printStackTrace();
                 Log.e(TAG,"JSON Exception", e);
             }
 
             PutDataIntoRecyclerView(stationList);
-
         }
     }
 }
