@@ -53,6 +53,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     /**
+     * OnBindViewHolder -> when we scroll over the screen and old views get "recycled" we have to use them
+     *  to put new data into them for the views that appeared on the bottom of the screen
      *
      * @param holder -> our RecyclerViewHolder
      * @param position -> we use this position to get the current item out of the array list and match it to the TextView
@@ -72,6 +74,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             holder.open.setTextColor(Color.argb(100,0,200,0));
         }
 
+
+        //for the petrol station icons we now compare the values of the "brand" JSON Object that we receive
+        //with Strings and then set the according icon when its a match
         holder.brand.setText(mData.get(position).getS_brand());
         if(mData.get(position).getS_brand().equalsIgnoreCase("aral")){
             holder.icon.setImageResource(R.drawable.aral);
@@ -134,23 +139,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             name = itemView.findViewById(R.id.tv_station_name);
             open = itemView.findViewById(R.id.tv_open);
-           /* if (open.getText().toString().equals("Geschlossen")){
-                open.setTextColor(Color.RED);
-            }
-            else {
-                open.setTextColor(Color.argb(100,0,200,0));
-            }*/
-
             brand = itemView.findViewById(R.id.tv_brand);
             icon = itemView.findViewById(R.id.StationIcon);
-           /* String jet = "JET";
-            if (brand.getText().toString().equals(jet)){
-                icon.setImageResource(R.drawable.jet);
-            }
-            else {
-                icon.setImageResource(R.drawable.agip);
-            }*/
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
