@@ -13,13 +13,13 @@
         android:id="@+id/tv_station_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="16dp"
         android:clickable="false"
         android:gravity="center_vertical"
         android:text="@string/StationName"
         android:textColor="#353535"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +27,12 @@
         android:id="@+id/tv_open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_vertical"
         android:text="@string/StationOpen"
         android:textColor="#353535"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_station_name" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/divider3"
         android:layout_width="409dp"
         android:layout_height="1dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="16dp"
         android:height="1dip"
         android:background="?android:attr/listDivider"
         android:color="@color/black"
@@ -63,12 +63,11 @@
         android:id="@+id/StationIcon"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:contentDescription="@string/StationPicture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.909"
         app:srcCompat="@mipmap/fuel_app" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
